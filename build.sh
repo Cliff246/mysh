@@ -7,7 +7,7 @@ function clean_build() {
     mkdir "$build_dir"
 }
 
-function make_build() {
+function cmake_build() {
     
     if [ -d "$build_dir" ]; then
         cd "$build_dir" || exit
@@ -16,7 +16,21 @@ function make_build() {
     else    
         echo "failed"   
     fi
+    cd ..
+}
+
+function compile_build() {
+    
+    if [ -d "$build_dir" ]; then
+        cd "$build_dir" || exit
+        make
+        echo "built"
+    else    
+        echo "failed"   
+    fi
+    cd ..
 }
 
 clean_build
-make_build
+cmake_build
+compile_build
